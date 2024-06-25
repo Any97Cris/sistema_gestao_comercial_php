@@ -1,0 +1,3 @@
+[submodule "nura_dashboard/nura_dashboard/Nura-Admin"]
+	path = nura_dashboard/nura_dashboard/Nura-Admin
+	url = https://github.com/chimilevschi/Nura-Admin
