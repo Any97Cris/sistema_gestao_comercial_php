@@ -28,7 +28,7 @@
 											<h1 class="main-title float-left">Dashboard</h1>
 											<ol class="breadcrumb float-right">
 												<li class="breadcrumb-item">Home</li>
-												<li class="breadcrumb-item active">Dashboard</li>
+												<li class="breadcrumb-item active">Cadastro Usuário</li>
 											</ol>
 											<div class="clearfix"></div>
 									</div>
