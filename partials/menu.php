@@ -108,7 +108,7 @@
 						<a href="#"><i class="fa fa-fw fa-tv"></i> <span> Agenda Telefonica </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="form_contact.php">Adicionar Cadastro</a></li>
-								<li><a href="ui-buttons.html">Listar Contatos</a></li>
+								<li><a href="list_contact.php">Listar Contatos</a></li>
 							</ul>
 					</li>
 				</ul>
