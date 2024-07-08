@@ -1,6 +1,44 @@
 
 <?php include_once './partials/header.php';?>
 
+<script>
+	$(function(){
+		$('#exampleModal').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget) 
+			var id = button.data('id')
+			var name = button.data('name')
+			var email = button.data('email')
+			var telephone = button.data('telephone')
+			var business = button.data('business')
+			var modal = $(this)
+			modal.find('.modal-title').text('Editar')
+			modal.find('#id_edit').val(id)
+			modal.find('#name_edit').val(name)
+			modal.find('#email_edit').val(email)
+			modal.find('#telephone_edit').val(telephone)
+			modal.find('#business_edit').val(business)
+		});
+	});
+
+	$(function(){
+		$('#exampleModal2').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget) 
+			var id = button.data('id')
+			var name = button.data('name')
+			var email = button.data('email')
+			var telephone = button.data('telephone')
+			var business = button.data('business')
+			var modal = $(this)
+			modal.find('.modal-title').text('Deletar')
+			modal.find('#id_delete').val(id)
+			modal.find('#name_delete').val(name)
+			modal.find('#email_delete').val(email)
+			modal.find('#telephone_delete').val(telephone)
+			modal.find('#business_delete').val(business)
+		});
+	});
+</script>
+
 <body class="adminbody">
 
 <div id="main">
@@ -108,10 +146,11 @@
 												$listDatas = mysqli_query($conexao,$sql);
 												
 												while($array = mysqli_fetch_array($listDatas)){
+													$id = $array['id'];
 													$name = $array['name'];
 													$mail = $array['mail'];
 													$telephone = $array['telephone'];
-													$business = $array['business'];											
+													$business = $array['business'];		
 												
 											?>
 											<tr>
@@ -120,10 +159,106 @@
 												<td><?= $telephone ?></td>
 												<td><?= $business ?></td>
 												<td class="text-center">
-												<button type="button" class="btn btn-warning" title="Edita"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-												<button type="button" class="btn btn-danger" title="Deleta"><i class="fa fa-trash" aria-hidden="true"></i></button>
+												<button type="button" class="btn btn-warning" title="Edita" data-toggle="modal" data-target="#exampleModal" 
+													data-id="<?php echo $id ?>"
+													data-name="<?= $name ?>"
+													data-email="<?= $mail ?>"
+													data-telephone="<?= $telephone ?>"
+													data-business="<?= $business ?>"
+												>
+													<i class="fa fa-pencil" aria-hidden="true"></i>
+												</button>
+												<button type="button" class="btn btn-danger" title="Deleta"><i class="fa fa-trash" aria-hidden="true"
+													data-toggle="modal" data-target="#exampleModal2" 
+													data-id="<?php echo $id ?>"
+													data-name="<?= $name ?>"
+													data-email="<?= $mail ?>"
+													data-telephone="<?= $telephone ?>"
+													data-business="<?= $business ?>"
+												></i></button>
 												</td>
 											</tr>
+
+											<!-- Inicio Modal Editar -->
+											<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="exampleModalLabel"></h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															<form>
+																<input type="hidden" class="form-control" id="id_edit">
+																<div class="form-group">
+																	<label for="recipient-name" class="col-form-label">Nome:</label>
+																	<input type="text" class="form-control" id="name_edit">
+																</div>
+																<div class="form-group">
+																	<label for="recipient-name" class="col-form-label">Email:</label>
+																	<input type="text" class="form-control" id="email_edit">
+																</div>
+																<div class="form-group">
+																	<label for="recipient-name" class="col-form-label">Telefone:</label>
+																	<input type="text" class="form-control telefone" id="telephone_edit">
+																</div>
+																<div class="form-group">
+																	<label for="recipient-name" class="col-form-label">Empresa:</label>
+																	<input type="text" class="form-control" id="business_edit">
+																</div>
+															</form>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+															<button type="submit" class="btn btn-primary">Enviar</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- Fim Modal Editar -->
+
+											<!-- Inicio Modal Deletar -->
+											<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="exampleModalLabel"></h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															<form>
+																<input type="hidden" class="form-control" id="id_delete">
+																<div class="form-group">
+																	<label for="recipient-name" class="col-form-label">Nome:</label>
+																	<input type="text" class="form-control" id="name_delete" readonly>
+																</div>
+																<div class="form-group">
+																	<label for="recipient-name" class="col-form-label">Email:</label>
+																	<input type="text" class="form-control" id="email_delete" readonly>
+																</div>
+																<div class="form-group">
+																	<label for="recipient-name" class="col-form-label">Telefone:</label>
+																	<input type="text" class="form-control telefone" id="telephone_delete" readonly>
+																</div>
+																<div class="form-group">
+																	<label for="recipient-name" class="col-form-label">Empresa:</label>
+																	<input type="text" class="form-control" id="business_delete" readonly>
+																</div>
+															</form>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+															<button type="submit" class="btn btn-primary">Deletar</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- Fim Modal Deletar -->
+
 											<?php } ?>
 										</tbody>
 									</table>
@@ -148,8 +283,12 @@
     </div>
 	<!-- END content-page -->
     
-	<?php include './partials/footer.php' ?>
+	<script type="text/javascript">
+		$('.telefone').mask('(00) 00000-0000');
+	</script>
 
+	<?php include './partials/footer.php' ?>
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#example').DataTable({
