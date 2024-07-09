@@ -120,7 +120,30 @@
                             
                         <div class="card-body">
 
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">						
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+							
+							<?php 
+								if(isset($_GET['msg'])){ 
+									if($_GET['msg'] == 1){
+							?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Dados salvos com sucesso!</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <?php }else{ ?>
+								<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Dados deletados com sucesso!</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+							<?php }
+						
+								} ?>
+
+
 							<div class="card mb-3">
 								<div class="card-header">
 									<h3><i class="fa fa-table"></i>Lista de Contatos</h3>
@@ -190,29 +213,29 @@
 															</button>
 														</div>
 														<div class="modal-body">
-															<form>
-																<input type="hidden" class="form-control" id="id_edit">
+															<form action="edit_contact.php" method="post">
+																<input type="hidden" class="form-control" name="id" id="id_edit">
 																<div class="form-group">
 																	<label for="recipient-name" class="col-form-label">Nome:</label>
-																	<input type="text" class="form-control" id="name_edit">
+																	<input type="text" class="form-control" name="name" id="name_edit">
 																</div>
 																<div class="form-group">
 																	<label for="recipient-name" class="col-form-label">Email:</label>
-																	<input type="text" class="form-control" id="email_edit">
+																	<input type="text" class="form-control" name="email" id="email_edit">
 																</div>
 																<div class="form-group">
 																	<label for="recipient-name" class="col-form-label">Telefone:</label>
-																	<input type="text" class="form-control telefone" id="telephone_edit">
+																	<input type="text" class="form-control telefone" name="telephone" id="telephone_edit">
 																</div>
 																<div class="form-group">
 																	<label for="recipient-name" class="col-form-label">Empresa:</label>
-																	<input type="text" class="form-control" id="business_edit">
+																	<input type="text" class="form-control" name="business" id="business_edit">
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+																	<button type="submit" class="btn btn-primary">Enviar</button>
 																</div>
 															</form>
-														</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-															<button type="submit" class="btn btn-primary">Enviar</button>
 														</div>
 													</div>
 												</div>
@@ -230,29 +253,29 @@
 															</button>
 														</div>
 														<div class="modal-body">
-															<form>
-																<input type="hidden" class="form-control" id="id_delete">
+															<form action="delete_contact.php" method="post">
+																<input type="hidden" class="form-control" name="id" id="id_delete">
 																<div class="form-group">
 																	<label for="recipient-name" class="col-form-label">Nome:</label>
-																	<input type="text" class="form-control" id="name_delete" readonly>
+																	<input type="text" class="form-control" name="name" id="name_delete" readonly>
 																</div>
 																<div class="form-group">
 																	<label for="recipient-name" class="col-form-label">Email:</label>
-																	<input type="text" class="form-control" id="email_delete" readonly>
+																	<input type="text" class="form-control" name="email" id="email_delete" readonly>
 																</div>
 																<div class="form-group">
 																	<label for="recipient-name" class="col-form-label">Telefone:</label>
-																	<input type="text" class="form-control telefone" id="telephone_delete" readonly>
+																	<input type="text" class="form-control telefone" name="telephone" id="telephone_delete" readonly>
 																</div>
 																<div class="form-group">
 																	<label for="recipient-name" class="col-form-label">Empresa:</label>
-																	<input type="text" class="form-control" id="business_delete" readonly>
+																	<input type="text" class="form-control" name="business" id="business_delete" readonly>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+																	<button type="submit" class="btn btn-primary">Deletar</button>
 																</div>
 															</form>
-														</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-															<button type="submit" class="btn btn-primary">Deletar</button>
 														</div>
 													</div>
 												</div>
