@@ -38,46 +38,64 @@
     <div class="row justify-content-md-center">
 
         <div class="col-lg-6 p-5">
-            <form>
+            <form action="./cadastrar_usuario.php" method="post">
+
+                <?php if($_GET['msg'] == 1){?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Dados salvos com sucesso!</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php } ?>
+
                 <!-- Email input -->
                 <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="email" id="form2Example1" class="form-control" />
-                    <label class="form-label" for="form2Example1">Email</label>
+                    <input type="email" name="email" class="form-control" />
+                    <label class="form-label">Email</label>
                 </div>
                 
                 <!-- Password input -->
                 <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" id="form2Example2" class="form-control" />
+                    <input type="password" id="password" name="password" class="form-control" />
                     <label class="form-label" for="form2Example2">Senha</label>
                 </div>
                 
                 <!-- Password input -->
                 <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" id="form2Example2" class="form-control" />
-                    <label class="form-label" for="form2Example2">Confirmar Senha</label>
+                    <input type="password" id="confirm_password" name="password2" class="form-control" />
+                    <label class="form-label">Confirmar Senha</label>
                 </div>
                 
                 <!-- Submit button -->
-                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Salvar</button>
+                <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-5">Salvar</button>
 
             </form>
+            <p>Possui conta? Clique em acessar</p>
+            <a class="btn btn-warning btn-block mb-4">Acessar</a>
         </div>
     </div>
 
 </div>
 </body>
 
-<!-- <script src="/assets/js/modernizr.min.js"></script> -->
-<script src="/Nura-Admin/src/assets/js/modernizr.min.js"></script>
-<script src="/Nura-Admin/src/assets/js/jquery.min.js"></script>
-<script src="/Nura-Admin/src/assets/js/moment.min.js"></script>
-		
-<script src="/Nura-Admin/src/assets/js/popper.min.js"></script>
-<script src="/Nura-Admin/src/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    var password = document.getElementById("password")
+    var confirm_password = document.getElementById("confirm_password")
 
-<script src="/Nura-Admin/src/assets/js/detect.js"></script>
-<script src="/Nura-Admin/src/assets/js/fastclick.js"></script>
-<script src="/Nura-Admin/src/assets/js/jquery.blockUI.js"></script>
-<script src="/Nura-Admin/src/assets/js/jquery.nicescroll.js"></script>
+    function validatePassword(){
+        if(password.value != confirm_password.value){
+            confirm_password.setCustomValidity("Senhas diferentes!")
+            console.log("Senhas diferentes!")
+        }else{
+            confirm_password.setCustomValidity('')
+            console.log('passou')
+        }
+    }
+
+    password.onchange = validatePassword
+    confirm_password.onchange = validatePassword
+
+</script>
 
 </html>
